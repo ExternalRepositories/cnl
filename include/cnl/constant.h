@@ -12,6 +12,7 @@
 
 #include "_impl/config.h"
 #include "_impl/num_traits/digits.h"
+#include "_impl/parse.h"
 #include "_impl/type_traits/is_signed.h"
 #include "cstdint.h"
 #include "limits.h"  // NOLINT(modernize-deprecated-headers,  hicpp-deprecated-headers)
@@ -146,7 +147,7 @@ namespace cnl {
     namespace literals {
         template<char... Chars>
         CNL_NODISCARD constexpr auto operator"" _c()
-                -> constant<_cnlint_impl::parse<Chars..., '\0'>()>
+                -> constant<_impl::parse<intmax, Chars...>()>
         {
             return {};
         }
